@@ -3,7 +3,6 @@ package com.example.drawapp;
 import android.app.Activity;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,10 +18,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		//drawing view
+		//drawing view， retrieve the blank draw defined in layout
 		drawingView = (DrawingBoard)findViewById(R.id.blankdrawing);
 		
-		//get color palette and the default color
+		//get color palette and the default color, retrieve from layout
 		LinearLayout colorLayout = (LinearLayout)findViewById(R.id.color_bar);	
 		//get the first color as default color
 		nowColor = (ImageButton)colorLayout.getChildAt(0);
@@ -50,7 +49,19 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	//use choose the color
 	public void colorClicked(View view){
+		//checked if the color that the user chosen is the default color 
 		
+		if(view != nowColor){
+			ImageButton imgView = (ImageButton)view;
+			String color = view.getTag().toString();
+			System.out.println(color);
+			drawingView.selectColor(color);	
+		
+		imgView.setImageDrawable(getResources().getDrawable(R.drawable.selected_color));
+		nowColor.setImageDrawable(getResources().getDrawable(R.drawable.colors));
+		nowColor=(ImageButton)view;
+		}
 	}
 }

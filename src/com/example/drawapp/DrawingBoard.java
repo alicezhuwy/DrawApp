@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
@@ -17,13 +18,13 @@ public class DrawingBoard extends View {
 	private Paint drawingPaint, canvasPaint;
 	//Set default color
 	private int defaultColor = 0xFFFF0000;
-	//Canvas
+	//Canvas, the user paths drawn with drawPaint will be drawn here
 	private Canvas drawingCanvas;
 	//Canvas bitmap
 	private Bitmap canvasBitmap;
 
 	//Because startDrawing is private method, then create a constructor to assign
-	//value to it.name as class.
+	//value to it. name same as class.
 	public DrawingBoard(Context context, AttributeSet attrs){
 		super(context, attrs);
 		startDrawing();
@@ -34,6 +35,7 @@ public class DrawingBoard extends View {
 		drawingPath = new Path();
 		drawingPaint = new Paint();
 		
+		//methods of "Paint"
 		//Set initial color, style and stroke of paint
 		drawingPaint.setColor(defaultColor);
 		//smooth out the edges
@@ -54,9 +56,13 @@ public class DrawingBoard extends View {
 		drawingCanvas = new Canvas(canvasBitmap);
 	}
 	
+	//let the above works, each time the user draws, it will validate the view, 
+	//causing the "onDraw" method to executed 
 	@Override
 	protected void onDraw(Canvas canvas){
+		//draw on specific bitmap
 		canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+		//draw on specific path using specific paint
 		canvas.drawPath(drawingPath, drawingPaint);
 	}
 	
@@ -87,6 +93,14 @@ public class DrawingBoard extends View {
 		//invalidate and redraw,call invalidate and cause the onDraw to execute
 		invalidate();
 		return true;
+	}
+	
+	//select color
+	public void selectColor(String newColor){
+		invalidate();
+		defaultColor = Color.parseColor(newColor);
+		drawingPaint.setColor(defaultColor);
+		
 	}
 }
 
