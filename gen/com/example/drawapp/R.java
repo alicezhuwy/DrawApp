@@ -55,15 +55,13 @@ public final class R {
         public static final int triangle_btn=0x7f090005;
     }
     public static final class integer {
-        public static final int lager_bursh=0x7f050002;
-        public static final int medium_brush=0x7f050001;
+        public static final int large_size=0x7f050002;
+        public static final int medium_size=0x7f050001;
         public static final int small_size=0x7f050000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int color_bar=0x7f030001;
-        public static final int function_bar=0x7f030002;
-        public static final int test=0x7f030003;
+        public static final int brush_dialog=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -74,10 +72,17 @@ public final class R {
         public static final int brush=0x7f060003;
         public static final int eraser=0x7f060004;
         public static final int exit=0x7f060008;
+        public static final int lrg=0x7f06000b;
+        public static final int med=0x7f06000a;
+        /**     function bar buttons 
+         */
         public static final int new_draw=0x7f060002;
         public static final int paint=0x7f060005;
         public static final int save=0x7f060007;
         public static final int shape=0x7f060006;
+        /**      brush buttons 
+         */
+        public static final int sml=0x7f060009;
     }
     public static final class style {
         /** 

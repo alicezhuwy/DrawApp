@@ -95,11 +95,14 @@ public class DrawingBoard extends View {
 		return true;
 	}
 	
-	//select color
+	//call by Main Activity, and reset color
 	public void selectColor(String newColor){
 		invalidate();
 		defaultColor = Color.parseColor(newColor);
-		drawingPaint.setColor(defaultColor);
+		drawingPaint.setColor(defaultColor);		
+	}
+	
+	public void startNew(){
 		
 	}
 }

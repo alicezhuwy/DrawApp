@@ -86,6 +86,7 @@
 		android:layout_gravity="center"
 		android:orientation="horizontal">
         
+       <!-- the color will be retrieve by tag -->
 		<ImageButton
 			android:layout_width="@dimen/large_brush"
 			android:layout_height="@dimen/large_brush"

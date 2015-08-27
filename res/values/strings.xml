@@ -3,6 +3,8 @@
 
     <string name="app_name">"Let's Draw!"</string>
     <string name="action_settings">Settings</string>
+    
+ <!--    function bar buttons -->
     <string name="new_draw">New Draw</string>
     <string name="brush">Brush</string>
     <string name="eraser">Erase</string>
@@ -10,5 +12,10 @@
     <string name="shape">Shape</string>
     <string name="save">Save Draw</string>
     <string name="exit">Exit</string>
+    
+<!--     brush buttons -->
+    <string name="sml">Small</string>
+    <string name="med">Meduim</string>
+    <string name="lrg">Large</string>
     
 </resources>
