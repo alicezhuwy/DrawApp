@@ -78,45 +78,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		//if the brush is clicked
 		if(view.getId() == R.id.brush_btn){
 			final Dialog brushDialog = new Dialog(this);
-//			brushDialog.setTitle("Brush Size");
-			brushDialog.setContentView(R.layout.brush_dialog);
-			
-			//listen clicks on the three size buttons
-			//small brush
-			ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
-			smallBtn.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View v){
-					drawingView.setBrushSize(smallBrush);
-					drawingView.setLastBrushSize(smallBrush);
-					brushDialog.dismiss();
-				}
-			});
-			
-			//medium brush
-			ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
-			mediumBtn.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View v){
-					drawingView.setBrushSize(mediumBrush);
-					drawingView.setLastBrushSize(mediumBrush);
-					brushDialog.dismiss();
-				}
-			});
-			
-			//large brush
-			ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
-			largeBtn.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View v){
-					drawingView.setBrushSize(largeBrush);
-					drawingView.setLastBrushSize(largeBrush);
-					brushDialog.dismiss();
-				}
-			});
-			
-			//display the brush dialog
-			brushDialog.show();
+			brushDialog.setTitle("Brush Size");
+			brushDialog.setContentView(R.layout.brush_dialog);		
 		}
 	}
 }

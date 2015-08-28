@@ -1,0 +1,49 @@
+<!-- The main layout -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    tools:context=".MainActivity" >
+    
+    <LinearLayout
+        android:id="@+id/function_bar"
+		android:layout_width="50dp"
+		android:layout_height="match_parent"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentStart="true"
+		android:orientation="vertical">
+		
+        <include layout="@layout/function_bar"/>
+	</LinearLayout>
+	
+    <LinearLayout 
+        android:id="@+id/color_bar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentEnd="true"
+		android:layout_marginTop="2dp"
+		android:layout_marginBottom="2dp"
+		android:layout_marginEnd="3dp"
+		android:layout_gravity="center"
+		android:orientation="horizontal">
+        
+        <include layout="@layout/color_bar"/>      
+    </LinearLayout>
+	 
+	<com.example.drawapp.DrawingBoard
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/blankdrawing"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toEndOf="@id/function_bar"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentEnd="true"
+		android:layout_above="@id/color_bar"
+		android:layout_marginTop="4dp"
+		android:layout_marginEnd="4dp"
+		android:background="#FFFFFFFF" />
+	
+</RelativeLayout>

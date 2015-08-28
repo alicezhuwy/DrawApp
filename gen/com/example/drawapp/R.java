@@ -21,7 +21,7 @@ public final class R {
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
         public static final int large_brush=0x7f040004;
-        public static final int mediunm_brush=0x7f040003;
+        public static final int medium_brush=0x7f040003;
         /** Brush sizes
          */
         public static final int small_brush=0x7f040002;
@@ -30,18 +30,21 @@ public final class R {
         public static final int background2=0x7f020000;
         public static final int colors=0x7f020001;
         public static final int ic_launcher=0x7f020002;
-        public static final int rsz_brush=0x7f020003;
-        public static final int rsz_circle=0x7f020004;
-        public static final int rsz_eraser=0x7f020005;
-        public static final int rsz_exit=0x7f020006;
-        public static final int rsz_newdraw=0x7f020007;
-        public static final int rsz_save=0x7f020008;
-        public static final int rsz_square=0x7f020009;
-        public static final int rsz_triangle=0x7f02000a;
-        public static final int selected_color=0x7f02000b;
+        public static final int large_brush=0x7f020003;
+        public static final int medium_brush=0x7f020004;
+        public static final int rsz_brush=0x7f020005;
+        public static final int rsz_circle=0x7f020006;
+        public static final int rsz_eraser=0x7f020007;
+        public static final int rsz_exit=0x7f020008;
+        public static final int rsz_newdraw=0x7f020009;
+        public static final int rsz_save=0x7f02000a;
+        public static final int rsz_square=0x7f02000b;
+        public static final int rsz_triangle=0x7f02000c;
+        public static final int selected_color=0x7f02000d;
+        public static final int small_brush=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000b;
+        public static final int action_settings=0x7f09000e;
         public static final int blankdrawing=0x7f09000a;
         public static final int brush_btn=0x7f090002;
         public static final int circle_btn=0x7f090003;
@@ -49,8 +52,11 @@ public final class R {
         public static final int eraser_btn=0x7f090006;
         public static final int exit_btn=0x7f090008;
         public static final int function_bar=0x7f090000;
+        public static final int large_brush=0x7f09000d;
+        public static final int medium_brush=0x7f09000c;
         public static final int new_btn=0x7f090001;
         public static final int save_btn=0x7f090007;
+        public static final int small_brush=0x7f09000b;
         public static final int square_btn=0x7f090004;
         public static final int triangle_btn=0x7f090005;
     }
@@ -62,6 +68,9 @@ public final class R {
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int brush_dialog=0x7f030001;
+        public static final int color_bar=0x7f030002;
+        public static final int function_bar=0x7f030003;
+        public static final int test=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -70,6 +79,7 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int brush=0x7f060003;
+        public static final int brush_dialog_title=0x7f06000c;
         public static final int eraser=0x7f060004;
         public static final int exit=0x7f060008;
         public static final int lrg=0x7f06000b;

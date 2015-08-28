@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+		android:layout_width="50dp"
+		android:layout_height="match_parent"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentStart="true"
+		android:orientation="vertical">
+		
+		<ImageButton
+            android:id="@+id/new_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/new_draw"
+            android:src="@drawable/rsz_newdraw" />  
+            
+       <ImageButton
+            android:id="@+id/brush_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/brush"
+            android:src="@drawable/rsz_brush" />
+                	
+       		
+		<ImageButton
+            android:id="@+id/circle_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/shape"
+            android:src="@drawable/rsz_circle" /> 
+            			
+		<ImageButton
+            android:id="@+id/square_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/shape"
+            android:src="@drawable/rsz_square" />
+						
+		<ImageButton
+            android:id="@+id/triangle_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/shape"
+            android:src="@drawable/rsz_triangle" /> 
+            
+        <ImageButton
+            android:id="@+id/eraser_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/eraser"
+            android:src="@drawable/rsz_eraser" />
+        
+        <ImageButton
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/save"
+            android:src="@drawable/rsz_save"/>
+        
+        <ImageButton
+            android:id="@+id/exit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/exit"
+            android:src="@drawable/rsz_exit"/>
+              
+</LinearLayout>

@@ -43,9 +43,9 @@ public class DrawingBoard extends View {
 		drawingPaint = new Paint();
 		
 		//instantiate brushSize and lastBrushSize
-		brushSize = getResources().getDimension(R.dimen.medium_brush);
-		lastBrushSize = brushSize;
-		drawingPaint.setStrokeWidth(brushSize);
+//		brushSize = getResources().getDimension(R.dimen.medium_brush);
+//		lastBrushSize = brushSize;
+//		drawingPaint.setStrokeWidth(brushSize);
 		
 		//methods of "Paint"
 		//Set initial color, style and stroke of paint
@@ -118,26 +118,26 @@ public class DrawingBoard extends View {
 		drawingPaint.setColor(defaultColor);		
 	}
 	
-	public void setBrushSize(float newBrushSize){
-		//Converts an unpacked complex data value holding a dimension to its final floating 
-		//point value.
-		//update the brush size with the passed value
-		float brushPxUnit = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newBrushSize, getResources().getDisplayMetrics());
-		brushSize = brushPxUnit;
-		drawingPaint.setStrokeWidth(brushSize);		
-	}
-	
-	//to get the other size variable
-	public void setLastBrushSize(float lastSize){
-		lastBrushSize = lastSize;
-	}
-	
-	public float getLastBrushSize(){
-		return lastBrushSize;
-	}
-	
-	public void startNew(){
-		
-	}
+//	public void setBrushSize(float newBrushSize){
+//		//Converts an unpacked complex data value holding a dimension to its final floating 
+//		//point value.
+//		//update the brush size with the passed value
+//		float brushPxUnit = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newBrushSize, getResources().getDisplayMetrics());
+//		brushSize = brushPxUnit;
+//		drawingPaint.setStrokeWidth(brushSize);		
+//	}
+//	
+//	//to get the other size variable
+//	public void setLastBrushSize(float lastSize){
+//		lastBrushSize = lastSize;
+//	}
+//	
+//	public float getLastBrushSize(){
+//		return lastBrushSize;
+//	}
+//	
+//	public void startNew(){
+//		
+//	}
 }
 
