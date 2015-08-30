@@ -1,6 +1,7 @@
 package com.example.drawapp;
 
 import android.content.Context;
+
 import android.util.AttributeSet;
 import android.view.View;
 import android.graphics.Bitmap;
@@ -12,8 +13,9 @@ import android.view.MotionEvent;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.util.TypedValue;
+import android.view.View.OnTouchListener;
 
-public class DrawingBoard extends View {
+public class DrawingBoard extends View implements OnTouchListener{
 	
 	//Drawing path
 	private Path drawingPath;
@@ -28,10 +30,21 @@ public class DrawingBoard extends View {
 	//use lastBrushSize to keep tracking when the user switches to the eraser
 	//and then back to use the brush to draw
 	private float brushSize, lastBrushSize;
-
+	//eraser
+	public boolean erase = false;
+	
+	public DrawingBoard(Context context){
+		super(context);
+		startDrawing();
+	}
 	
 	//Because startDrawing is private method, then create a constructor to assign
 	//value to it. name same as class.
+	public DrawingBoard(Context context, AttributeSet attrs, int defStyleAttr){
+		super(context, attrs, defStyleAttr);
+		startDrawing();
+	}
+	
 	public DrawingBoard(Context context, AttributeSet attrs){
 		super(context, attrs);
 		startDrawing();
@@ -39,6 +52,8 @@ public class DrawingBoard extends View {
 
 	//Setup everything for drawing
 	private void startDrawing(){
+		
+		setOnTouchListener(this);
 		drawingPath = new Path();
 		drawingPaint = new Paint();
 		
@@ -61,15 +76,6 @@ public class DrawingBoard extends View {
 	}
 	
 	
-	//This is called during layout when the size of this view has changed.
-	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh){
-		super.onSizeChanged(w, h, oldw, oldh);
-		canvasBitmap = Bitmap.createBitmap(w, h,Bitmap.Config.ARGB_8888);
-		drawingCanvas = new Canvas(canvasBitmap);
-	}
-	
-	
 	//let the above works, each time the user draws, it will validate the view, 
 	//causing the "onDraw" method to executed 
 	@Override
@@ -83,33 +89,72 @@ public class DrawingBoard extends View {
 	
 	//get touch input from user
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {
+	public boolean onTouch(View v, MotionEvent event) {
 		//obtain touch point from user
 		float fingerX = event.getX();
 		float fingerY = event.getY();
+//		
 		
-		//set condition when user has specific action
-		switch(event.getAction()){
-		case MotionEvent.ACTION_DOWN:
-			drawingPath.moveTo(fingerX, fingerY);
-			break;
-		case MotionEvent.ACTION_MOVE:
-			drawingPath.lineTo(fingerX, fingerY);
-			break;
-		//record the draw when user release finger
-		case MotionEvent.ACTION_UP:
-			drawingCanvas.drawPath(drawingPath, drawingPaint);
-			drawingPath.reset();
-			break;
-		default:
-			return false;
+//		set condition when user has specific action
+		if(v.getId() != R.id.square_btn && v.getId() != R.id.circle_btn && v.getId() != R.id.triangle_btn){
+			switch(event.getAction()){
+			case MotionEvent.ACTION_DOWN:
+				drawingPath.moveTo(fingerX, fingerY);
+				break;
+			case MotionEvent.ACTION_MOVE:
+				drawingPath.lineTo(fingerX, fingerY);
+				break;
+			//record the draw when user release finger
+			case MotionEvent.ACTION_UP:
+				drawingCanvas.drawPath(drawingPath, drawingPaint);
+				drawingPath.reset();
+				break;
+			default:
+				return false;		
+			}
 		}
 		
+		Paint shapePaint = new Paint();
+		shapePaint.setColor(defaultColor);
+		shapePaint.setStyle(Paint.Style.FILL);
+		if (v.getId() == R.id.square_btn){ 
+			drawingCanvas.drawRect(fingerX, fingerY, fingerX+20, fingerY+40, shapePaint);	
+		}
+		
+		else if (v.getId() == R.id.circle_btn){
+			drawingCanvas.drawCircle(fingerX, fingerY, 20, shapePaint);
+		}
+		
+		else if (v.getId() == R.id.triangle_btn){
+			Path path1 = new Path();
+			path1.moveTo(fingerX, fingerY);
+			path1.lineTo(fingerX+40, fingerY);
+			path1.lineTo(fingerX+20, fingerY-34);
+			path1.close();
+			drawingCanvas.drawPath(path1, shapePaint);
+		}
+			
 		//invalidate and redraw,call invalidate and cause the onDraw to execute
 		invalidate();
 		return true;
 	}
 	
+	
+	//This is called during layout when the size of this view has changed.
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh){
+		super.onSizeChanged(w, h, oldw, oldh);
+		canvasBitmap = Bitmap.createBitmap(w, h,Bitmap.Config.ARGB_8888);
+		drawingCanvas = new Canvas(canvasBitmap);
+	}
+	
+	
+	//define methods for function start here 
+	//function bar, button 1, start a new draw
+	public void startNewDrawing(){
+		drawingCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+		invalidate();
+	}
 	
 	//call by Main Activity, and reset color
 	public void selectColor(String newColor){
@@ -118,24 +163,34 @@ public class DrawingBoard extends View {
 		drawingPaint.setColor(defaultColor);		
 	}
 	
-	public void setBrushSize(float newBrushSize){
+	public void setSize(float newBrushSize){
 		//Converts an unpacked complex data value holding a dimension to its final floating 
 		//point value.
 		//update the brush size with the passed value
 		float brushPxUnit = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newBrushSize, getResources().getDisplayMetrics());
 		brushSize = brushPxUnit;
+		//paint use the brush we choose before
 		drawingPaint.setStrokeWidth(brushSize);		
 	}
 	
 	//to get the other size variable
-	public void setLastBrushSize(float lastSize){
+	public void setLastSize(float lastSize){
 		lastBrushSize = lastSize;
 	}
 	
 	public float getLastBrushSize(){
 		return lastBrushSize;
 	}
+		
+	//erase method
+	public void setErase(boolean isErase){
+		//update the flag variable
+		erase = isErase;
+		if(erase) drawingPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+		else drawingPaint.setXfermode(null);
+	}
 	
+
 	public void startNew(){
 		
 	}
