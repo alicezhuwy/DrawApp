@@ -12,6 +12,17 @@
 		android:orientation="horizontal">
         
        <!-- the color will be retrieve by tag -->
+       
+       	<ImageButton
+			android:layout_width="@dimen/large_brush"
+			android:layout_height="@dimen/large_brush"
+			android:layout_margin="2dp"
+			android:background="#FFFF6666"
+			android:contentDescription="@string/paint"
+			android:onClick="colorClicked"
+			android:src="@drawable/colors"
+			android:tag="#FFFF6666" />
+       	
 		<ImageButton
 			android:layout_width="@dimen/large_brush"
 			android:layout_height="@dimen/large_brush"
@@ -62,6 +73,17 @@
 		    android:src="@drawable/colors"
 		    android:tag="#FF009999" />
 	
+				
+		<ImageButton
+		    android:layout_width="@dimen/large_brush"
+		    android:layout_height="@dimen/large_brush"
+		    android:layout_margin="2dp"
+		    android:background="#FF0000FF"
+		    android:contentDescription="@string/paint"
+		    android:onClick="colorClicked"
+		    android:src="@drawable/colors"
+		    android:tag="#FF0000FF" />
+		
 		<ImageButton
 		    android:layout_width="@dimen/large_brush"
 		    android:layout_height="@dimen/large_brush"
@@ -71,6 +93,16 @@
 		    android:onClick="colorClicked"
 		    android:src="@drawable/colors"
 		    android:tag="#FF990099" />
+
+		<ImageButton
+		    android:layout_width="@dimen/large_brush"
+		    android:layout_height="@dimen/large_brush"
+		    android:layout_margin="2dp"
+		    android:background="#FF000000"
+		    android:contentDescription="@string/paint"
+		    android:onClick="colorClicked"
+		    android:src="@drawable/colors"
+		    android:tag="#FF000000" />
     
 
 </LinearLayout>

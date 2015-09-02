@@ -1,7 +1,6 @@
 package com.example.drawapp;
 
 import android.content.Context;
-
 import android.util.AttributeSet;
 import android.view.View;
 import android.graphics.Bitmap;
@@ -22,7 +21,7 @@ public class DrawingBoard extends View implements OnTouchListener{
 	//Drawing and canvas paint
 	private Paint drawingPaint, canvasPaint;
 	//Set default color
-	private int defaultColor = 0xFFFF0000;
+	private int defaultColor = 0xFFFF6666;
 	//Canvas, the user paths drawn with drawPaint will be drawn here
 	private Canvas drawingCanvas;
 	//Canvas bitmap
@@ -33,18 +32,9 @@ public class DrawingBoard extends View implements OnTouchListener{
 	//eraser
 	public boolean erase = false;
 	
-	public DrawingBoard(Context context){
-		super(context);
-		startDrawing();
-	}
-	
-	//Because startDrawing is private method, then create a constructor to assign
-	//value to it. name same as class.
-	public DrawingBoard(Context context, AttributeSet attrs, int defStyleAttr){
-		super(context, attrs, defStyleAttr);
-		startDrawing();
-	}
-	
+
+//	//	//Because startDrawing is private method, then create a constructor to assign
+//	//value to it. name same as class.
 	public DrawingBoard(Context context, AttributeSet attrs){
 		super(context, attrs);
 		startDrawing();
@@ -55,10 +45,11 @@ public class DrawingBoard extends View implements OnTouchListener{
 		
 		setOnTouchListener(this);
 		drawingPath = new Path();
-		drawingPaint = new Paint();
+		//Paint flag that enables dithering when blitting.
+		drawingPaint = new Paint(Paint.DITHER_FLAG);
 		
 		//instantiate brushSize and lastBrushSize
-		brushSize = getResources().getDimension(R.dimen.medium_brush);
+		brushSize = getResources().getDimension(R.dimen.small_brush);
 		lastBrushSize = brushSize;
 		drawingPaint.setStrokeWidth(brushSize);
 		
@@ -71,8 +62,7 @@ public class DrawingBoard extends View implements OnTouchListener{
 		drawingPaint.setStyle(Paint.Style.STROKE);
 		drawingPaint.setStrokeJoin(Paint.Join.ROUND);
 		drawingPaint.setStrokeCap(Paint.Cap.ROUND);
-		//Paint flag that enables dithering when blitting.
-		canvasPaint = new Paint(Paint.DITHER_FLAG);				
+		
 	}
 	
 	
@@ -114,17 +104,21 @@ public class DrawingBoard extends View implements OnTouchListener{
 			}
 		}
 		
+		//draw shape button 3,4,5 
+		//square
 		Paint shapePaint = new Paint();
 		shapePaint.setColor(defaultColor);
 		shapePaint.setStyle(Paint.Style.FILL);
 		if (v.getId() == R.id.square_btn){ 
-			drawingCanvas.drawRect(fingerX, fingerY, fingerX+20, fingerY+40, shapePaint);	
+			drawingCanvas.drawRect(fingerX, fingerY, fingerX+40, fingerY+40, shapePaint);	
 		}
 		
+		//draw circle
 		else if (v.getId() == R.id.circle_btn){
 			drawingCanvas.drawCircle(fingerX, fingerY, 20, shapePaint);
 		}
 		
+		//draw triangle
 		else if (v.getId() == R.id.triangle_btn){
 			Path path1 = new Path();
 			path1.moveTo(fingerX, fingerY);
@@ -191,8 +185,5 @@ public class DrawingBoard extends View implements OnTouchListener{
 	}
 	
 
-	public void startNew(){
-		
-	}
 }
 

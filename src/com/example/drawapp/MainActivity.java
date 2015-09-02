@@ -7,9 +7,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -18,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener{
 	private DrawingBoard drawingView;
-	private ImageButton nowColor, brushBtn, eraseBtn, newBtn, exitBtn, recBtn, cirBtn, triBtn;
+	private ImageButton nowColor, brushBtn, eraseBtn, newBtn, exitBtn, recBtn, cirBtn, triBtn, saveBtn;
 	private float smallSize, mediumSize, largeSize;
 
 
@@ -54,7 +51,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		brushBtn.setOnClickListener(this);
 		
 		//set up the image button of the erase and use onClickListener to monitor it
-		eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
+		eraseBtn = (ImageButton)findViewById(R.id.eraser_btn);
 		eraseBtn.setOnClickListener(this);
 		
 		//start a new draw
@@ -76,6 +73,10 @@ public class MainActivity extends Activity implements OnClickListener{
 		//set up the triganle button
 		triBtn = (ImageButton)findViewById(R.id.triangle_btn);
 		triBtn.setOnClickListener(this);
+		
+		//set up save button
+		saveBtn = (ImageButton)findViewById(R.id.save_btn);
+		saveBtn.setOnClickListener(this);
 		
 	}
 	
@@ -176,11 +177,24 @@ public class MainActivity extends Activity implements OnClickListener{
 		}
 		
 		
-
+		//function bar, button 3, draw circle
+		else if (view.getId() == R.id.circle_btn){
+			drawingView.setId(R.id.circle_btn);
+		}
+		
+		//function bar, button 4, draw rectangle
+		else if (view.getId() == R.id.square_btn){
+			drawingView.setId(R.id.square_btn);
+		}
+		
+//		//function bar, button 5, draw triangle
+		else if (view.getId() == R.id.triangle_btn){
+			drawingView.setId(R.id.triangle_btn);
+		}
 		
 		
 		//function bar, button 6, conditional statement for the erase button 
-		else if (view.getId() == R.id.erase_btn){
+		else if (view.getId() == R.id.eraser_btn){
 			final Dialog eraserDialog = new Dialog(this);
 			eraserDialog.setTitle("Eraser Size");
 			eraserDialog.setContentView(R.layout.size_dialog);
@@ -244,20 +258,43 @@ public class MainActivity extends Activity implements OnClickListener{
 			exitDialog.show();
 		}
 
-		//function bar, button 3, draw circle
-		else if (view.getId() == R.id.circle_btn){
-			drawingView.setId(R.id.circle_btn);
+		//save button
+		else if (view.getId() == R.id.save_btn){
+			AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
+			saveDialog.setTitle("Save Drawing");
+			saveDialog.setMessage("Save drawing to device Gallery?");
+			saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){ 
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					drawingView.setDrawingCacheEnabled(true);
+					String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), drawingView.getDrawingCache(), UUID.randomUUID().toString()+".png", "drawing");
+					if(imgSaved!=null){
+					    Toast savedToast = Toast.makeText(getApplicationContext(), 
+					        "Drawing saved successfully!", Toast.LENGTH_SHORT);
+					    savedToast.show();
+					}
+					else{
+					    Toast unsavedToast = Toast.makeText(getApplicationContext(), 
+					        "Sorry, image could not be saved.", Toast.LENGTH_SHORT);
+					    unsavedToast.show();
+					}
+					drawingView.destroyDrawingCache();
+				}
+			});
+			
+			saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					dialog.cancel();
+				}
+			});
+			saveDialog.show();
 		}
-		
-		//function bar, button 4, draw rectangle
-		else if (view.getId() == R.id.square_btn){
-			drawingView.setId(R.id.square_btn);
-		}
-		
-//		//function bar, button 5, draw triangle
-		else if (view.getId() == R.id.triangle_btn){
-			drawingView.setId(R.id.triangle_btn);
-		}
+
 		
 	}
 	
