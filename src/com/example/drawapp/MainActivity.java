@@ -130,6 +130,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		//function bar, button 2, choose a brush size, conditional statement for the brush button
 		else if(view.getId() == R.id.brush_btn){
+			drawingView.setId(R.id.brush_btn);
 			final Dialog brushDialog = new Dialog(this);
 			brushDialog.setTitle("Brush Size");
 			brushDialog.setContentView(R.layout.size_dialog);
@@ -154,7 +155,7 @@ public class MainActivity extends Activity implements OnClickListener{
 				public void onClick(View v){
 					drawingView.setSize(mediumSize);
 					drawingView.setLastSize(mediumSize);
-					//set back to drawing in case they erased before
+//					//set back to drawing in case they erased before
 					drawingView.setErase(false);
 					brushDialog.dismiss();
 				}
@@ -176,25 +177,9 @@ public class MainActivity extends Activity implements OnClickListener{
 			brushDialog.show();
 		}
 		
-		
-		//function bar, button 3, draw circle
-		else if (view.getId() == R.id.circle_btn){
-			drawingView.setId(R.id.circle_btn);
-		}
-		
-		//function bar, button 4, draw rectangle
-		else if (view.getId() == R.id.square_btn){
-			drawingView.setId(R.id.square_btn);
-		}
-		
-//		//function bar, button 5, draw triangle
-		else if (view.getId() == R.id.triangle_btn){
-			drawingView.setId(R.id.triangle_btn);
-		}
-		
-		
 		//function bar, button 6, conditional statement for the erase button 
 		else if (view.getId() == R.id.eraser_btn){
+			drawingView.setId(R.id.eraser_btn);
 			final Dialog eraserDialog = new Dialog(this);
 			eraserDialog.setTitle("Eraser Size");
 			eraserDialog.setContentView(R.layout.size_dialog);
@@ -236,6 +221,23 @@ public class MainActivity extends Activity implements OnClickListener{
 			eraserDialog.show();
 		}
 		
+		
+		//function bar, button 3, draw circle
+		else if (view.getId() == R.id.circle_btn){
+			drawingView.setId(R.id.circle_btn);
+		}
+		
+		//function bar, button 4, draw rectangle
+		else if (view.getId() == R.id.square_btn){
+			drawingView.setId(R.id.square_btn);
+		}
+		
+//		//function bar, button 5, draw triangle
+		else if (view.getId() == R.id.triangle_btn){
+			drawingView.setId(R.id.triangle_btn);
+		}
+		
+				
 		
 		//exit button
 		else if (view.getId() == R.id.exit_btn){

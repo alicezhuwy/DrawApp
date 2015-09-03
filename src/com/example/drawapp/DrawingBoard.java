@@ -83,32 +83,15 @@ public class DrawingBoard extends View implements OnTouchListener{
 		//obtain touch point from user
 		float fingerX = event.getX();
 		float fingerY = event.getY();
-//		
-		
-//		set condition when user has specific action
-		if(v.getId() != R.id.square_btn && v.getId() != R.id.circle_btn && v.getId() != R.id.triangle_btn){
-			switch(event.getAction()){
-			case MotionEvent.ACTION_DOWN:
-				drawingPath.moveTo(fingerX, fingerY);
-				break;
-			case MotionEvent.ACTION_MOVE:
-				drawingPath.lineTo(fingerX, fingerY);
-				break;
-			//record the draw when user release finger
-			case MotionEvent.ACTION_UP:
-				drawingCanvas.drawPath(drawingPath, drawingPaint);
-				drawingPath.reset();
-				break;
-			default:
-				return false;		
-			}
-		}
-		
 		//draw shape button 3,4,5 
 		//square
 		Paint shapePaint = new Paint();
 		shapePaint.setColor(defaultColor);
 		shapePaint.setStyle(Paint.Style.FILL);
+//		v.getId() != R.id.square_btn && v.getId() != R.id.circle_btn && v.getId() != R.id.triangle_btn
+		
+//		set condition when user has specific action
+
 		if (v.getId() == R.id.square_btn){ 
 			drawingCanvas.drawRect(fingerX, fingerY, fingerX+40, fingerY+40, shapePaint);	
 		}
@@ -127,6 +110,25 @@ public class DrawingBoard extends View implements OnTouchListener{
 			path1.close();
 			drawingCanvas.drawPath(path1, shapePaint);
 		}
+		
+		else {
+			switch(event.getAction()){
+			case MotionEvent.ACTION_DOWN:
+				drawingPath.moveTo(fingerX, fingerY);
+				break;
+			case MotionEvent.ACTION_MOVE:
+				drawingPath.lineTo(fingerX, fingerY);
+				break;
+			//record the draw when user release finger
+			case MotionEvent.ACTION_UP:
+				drawingCanvas.drawPath(drawingPath, drawingPaint);
+				drawingPath.reset();
+				break;
+			default:
+				return false;		
+			}
+		}
+		
 			
 		//invalidate and redraw,call invalidate and cause the onDraw to execute
 		invalidate();

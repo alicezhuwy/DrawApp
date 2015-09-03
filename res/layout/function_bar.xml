@@ -21,6 +21,13 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/brush"
             android:src="@drawable/rsz_brush" />
+       
+       <ImageButton
+            android:id="@+id/eraser_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/eraser"
+            android:src="@drawable/rsz_eraser" />
                 	
        		
 		<ImageButton
@@ -43,14 +50,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/shape"
             android:src="@drawable/rsz_triangle" /> 
-            
-        <ImageButton
-            android:id="@+id/eraser_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/eraser"
-            android:src="@drawable/rsz_eraser" />
-        
+                 
         <ImageButton
             android:id="@+id/save_btn"
             android:layout_width="wrap_content"
